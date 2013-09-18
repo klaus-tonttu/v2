@@ -93,7 +93,7 @@ function createMainScene() {
 	myLabel.x = (SCREEN_WIDTH - myLabel._boundWidth) / 2;
 	myLabel.y = 320;
 	myLabel.addEventListener('touchstart', function() {
-		playSound('play', sound_switch, SRC_SWITCH, 0) // サウンド再生
+		if(!ANDROID) playSound('play', sound_switch, SRC_SWITCH, 0) // サウンド再生
 		game.replaceScene(battleScene);
 	});
 	scene.addChild(myLabel);
@@ -111,7 +111,7 @@ function createBattleScene() {
 	myLabel.x = (SCREEN_WIDTH - myLabel._boundWidth) / 2;
 	myLabel.y = 320;
 	myLabel.addEventListener('touchstart', function() {
-		playSound('play', sound_switch, SRC_SWITCH, 0) // サウンド再生
+		if(!ANDROID) playSound('play', sound_switch, SRC_SWITCH, 0) // サウンド再生
 		game.replaceScene(mainScene);
 	});
 	scene.addChild(myLabel);
@@ -126,7 +126,7 @@ function playSound(action, obj, src, loop) {
 		if(!ANDROID) {
 			obj = game.assets[src].clone();
 		} else {
-//			obj = new Audio(src);
+			obj = new Audio(src);
 		}
 	}
 	if(action == 'play') {
@@ -135,7 +135,7 @@ function playSound(action, obj, src, loop) {
 			if(!ANDROID) {
 				obj.src.loop = true;
 			} else {
-//				obj.loop = 'true';
+				obj.loop = 'true';
 			}
 		}
 	}
